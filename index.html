@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Threads — Streetwear for the Bold</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+</head>
+<body>
+
+  <!-- ── Navbar ───────────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Urban<span>Threads</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li>
+          <a href="cart.html" class="nav-cart-link">
+            Cart <span class="cart-badge" id="cart-count" aria-label="Cart items" style="display:none">0</span>
+          </a>
+        </li>
+      </ul>
+      <div class="nav-auth">
+        <span id="user-display"></span>
+        <a href="login.html" class="btn btn-outline" id="login-nav-btn">Login</a>
+        <button class="btn btn-ghost" id="logout-btn" style="display:none">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">New Collection — Spring 2025</span>
+      <h1>
+        Wear the<br>
+        <span class="accent">Street.</span><br>
+        Own the<br>
+        Culture.
+      </h1>
+      <p>
+        Premium streetwear for the bold generation. Drop-worthy hoodies,
+        tees, kicks, and accessories — all in one place.
+      </p>
+      <div class="hero-actions">
+        <a href="shop.html" class="btn btn-primary">Shop Now</a>
+        <a href="shop.html?category=Hoodies" class="btn btn-outline">New Drops</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Categories ────────────────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-head">
+      <h2 class="section-title">Shop by Category</h2>
+      <a href="shop.html" class="section-link">View All →</a>
+    </div>
+    <div class="categories-grid">
+      <a href="shop.html?category=Hoodies" class="cat-card">
+        <span class="cat-icon">🧥</span>
+        <span class="cat-name">Hoodies</span>
+      </a>
+      <a href="shop.html?category=T-Shirts" class="cat-card">
+        <span class="cat-icon">👕</span>
+        <span class="cat-name">T-Shirts</span>
+      </a>
+      <a href="shop.html?category=Sneakers" class="cat-card">
+        <span class="cat-icon">👟</span>
+        <span class="cat-name">Sneakers</span>
+      </a>
+      <a href="shop.html?category=Accessories" class="cat-card">
+        <span class="cat-icon">🧢</span>
+        <span class="cat-name">Accessories</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Featured Products ──────────────────────────────────────────────── -->
+  <div class="section" style="padding-top:0">
+    <div class="section-head">
+      <h2 class="section-title">Featured Drops</h2>
+      <a href="shop.html" class="section-link">See all →</a>
+    </div>
+    <div class="products-grid" id="featured-products">
+      <p class="loading">Loading products…</p>
+    </div>
+  </div>
+
+  <!-- ── Footer ────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Urban<span>Threads</span></div>
+        <p>
+          Streetwear designed for the streets, built for the culture.
+          Premium quality, bold designs — always fresh.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?category=Hoodies">Hoodies</a></li>
+          <li><a href="shop.html?category=T-Shirts">T-Shirts</a></li>
+          <li><a href="shop.html?category=Sneakers">Sneakers</a></li>
+          <li><a href="shop.html?category=Accessories">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="login.html">Sign In</a></li>
+          <li><a href="login.html?tab=signup">Sign Up</a></li>
+          <li><a href="cart.html">My Cart</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Urban Threads. All rights reserved.</span>
+      <span>Streetwear for the Bold Generation</span>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initNav }                   from './js/auth.js';
+    import { fetchProducts, renderProducts } from './js/shop.js';
+    import { seedProducts }              from './js/seed.js';
+
+    initNav();
+
+    (async () => {
+      try { await seedProducts(); } catch (_) { /* non-fatal */ }
+      const all = await fetchProducts();
+      renderProducts(all.slice(0, 4), 'featured-products');
+    })();
+  </script>
+
+</body>
+</html>

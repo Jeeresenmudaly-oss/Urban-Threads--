@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — Urban Threads</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+</head>
+<body>
+
+  <!-- ── Navbar ───────────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Urban<span>Threads</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li>
+          <a href="cart.html" class="nav-cart-link">
+            Cart <span class="cart-badge" id="cart-count" aria-label="Cart items" style="display:none">0</span>
+          </a>
+        </li>
+      </ul>
+      <div class="nav-auth">
+        <span id="user-display"></span>
+        <a href="login.html" class="btn btn-outline" id="login-nav-btn">Login</a>
+        <button class="btn btn-ghost" id="logout-btn" style="display:none">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Cart content ───────────────────────────────────────────────────── -->
+  <main class="cart-page">
+    <h1 class="cart-title">Your Cart</h1>
+
+    <!-- Empty state -->
+    <div id="cart-empty" class="cart-empty" style="display:none">
+      <span class="cart-empty-icon">🛒</span>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything yet.</p>
+      <a href="shop.html" class="btn btn-primary">Browse the Collection</a>
+    </div>
+
+    <!-- Cart items (rendered by JS) -->
+    <div id="cart-items"></div>
+
+    <!-- Order summary -->
+    <div id="cart-summary" class="cart-summary" style="display:none">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span style="color:var(--success); font-weight:700">Free</span>
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="cart-total-final">$0.00</span>
+      </div>
+      <button
+        class="btn-checkout"
+        onclick="alert('🎉 Order placed! Thanks for shopping at Urban Threads.\n\n(Checkout integration coming soon)')"
+      >
+        Proceed to Checkout →
+      </button>
+    </div>
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Urban<span>Threads</span></div>
+        <p>Streetwear for the bold generation.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="shop.html?category=Hoodies">Hoodies</a></li>
+          <li><a href="shop.html?category=Sneakers">Sneakers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="login.html">Sign In</a></li>
+          <li><a href="cart.html">My Cart</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Urban Threads. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initNav }  from './js/auth.js';
+    import { initCart } from './js/cart.js';
+
+    initNav();
+    initCart();
+  </script>
+
+</body>
+</html>
